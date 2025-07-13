@@ -32,6 +32,9 @@ function NoteCard() {
   );
 }
 
+//button type submit olacak işte eğer var olan bir note varsa 
+//update yoksa add note falan işte anlarsın ya
+
 export default NoteCard;
 
 /*

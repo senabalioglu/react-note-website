@@ -1,12 +1,15 @@
-import Notes from "./Notes"
+import Notes from "./Notes";
+import NoteForm from "./components/NoteForm/NoteForm";
 
 function App() {
-
   return (
     <>
-      <Notes />
+      <div>
+        <NoteForm />
+        <Notes />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
