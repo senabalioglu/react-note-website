@@ -1,23 +1,33 @@
 import "./NoteForm.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function NoteForm({ onSubmit, existingNote, onCancel }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const noteData = {
+      title,
+      content,
+      date: new Date().toLocaleString(),
+      id: existingNote?.id || crypto.randomUUID(),
+    };
+
+    onSubmit(noteData);
+    setTitle("");
+    setContent("");
+  };
 
   return (
     <>
       <div className="form-div">
         <form className="note-form" onSubmit={handleSubmit}>
-          <input type="text" placeholder="Title" />
-          <textarea
-            placeholder="Content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <button> {existingNote ? "Update" : "Add"} </button>
+          <input onChange={(e) => setTitle(e.target.value)} type="text" placeholder="Title" value={title} />
+          <textarea onChange={(e) => setContent(e.target.value)} placeholder="Content" value={content} />
+          <button type="submit"> {existingNote ? "Update" : "Add"} </button>
+          {existingNote && <button onClick={onCancel}>Cancel</button>}
         </form>
       </div>
     </>
