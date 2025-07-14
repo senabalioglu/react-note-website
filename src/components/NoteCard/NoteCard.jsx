@@ -3,7 +3,7 @@ import "./NoteCard.css";
 function NoteCard({note, onEdit, onDelete}) {
   return (
     <>
-      <div className="card-container">
+      <div onClick={onDelete} className="card-container">
         <div className="inner-container">
           <div>
             <h3>{note.title}</h3>

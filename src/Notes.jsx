@@ -24,11 +24,21 @@ function Notes() {
     localStorage.setItem("notes", JSON.stringify(updatedNotes));
   };
 
+  const handleDeleteNote = (id) => {
+     const newNoteList = notes.filter((note) => note.id != id);
+     setNotes(newNoteList);
+     localStorage.setItem("notes", JSON.stringify(newNoteList));
+  }
+
   return (
     <>
       <NoteForm onSubmit={handleFormSubmit} />
       {notes.map((note) => (
-        <NoteCard key={note.id} note={note} onEdit={null} onDelete={null} />
+        <>
+        <div className="notes-div" >
+            <NoteCard key={note.id} note={note} onEdit={null} onDelete={() => handleDeleteNote(note.id)} />
+        </div>
+        </>
       ))}
     </>
   );
