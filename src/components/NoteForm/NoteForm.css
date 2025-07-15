@@ -26,8 +26,6 @@
 
 .note-form button {
   font-family: "Space Mono", monospace;
-  margin-top: 20px;
-  display: inline-block;
   padding: 10px 20px;
   background: #5f8171;
   color: #fff;
@@ -36,6 +34,7 @@
   border: 3px solid #000;
   box-shadow: 4px 4px 0 #000;
   transition: all 0.2s ease;
+  margin: 10px;
 }
 
 .note-form button:hover {

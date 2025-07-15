@@ -8,15 +8,16 @@ function Notes() {
     const saved = localStorage.getItem("notes");
     return saved ? JSON.parse(saved) : [];
   });
+  const [editingNote, setEditingNote] = useState(null);
 
   const handleFormSubmit = (note) => {
     let updatedNotes;
 
     const isEdit = notes.find((n) => n.id === note.id);
-    if(isEdit){
-        updatedNotes = notes.map((n) => (n.id === note.id ? note : n));
-    }else{
-        updatedNotes = [...notes, note];
+    if (isEdit) {
+      updatedNotes = notes.map((n) => (n.id === note.id ? note : n));
+    } else {
+      updatedNotes = [...notes, note];
     }
 
     setNotes(updatedNotes);
@@ -25,21 +26,34 @@ function Notes() {
   };
 
   const handleDeleteNote = (id) => {
-     const newNoteList = notes.filter((note) => note.id != id);
-     setNotes(newNoteList);
-     localStorage.setItem("notes", JSON.stringify(newNoteList));
-  }
+    const newNoteList = notes.filter((note) => note.id != id);
+    setNotes(newNoteList);
+    localStorage.setItem("notes", JSON.stringify(newNoteList));
+  };
+
+  const handleEditNote = (id) => {
+    const noteToEdit = notes.find((note) => note.id === id);
+    setEditingNote(noteToEdit);
+  };
 
   return (
     <>
-      <NoteForm onSubmit={handleFormSubmit} />
-      {notes.map((note) => (
-        <>
-        <div className="notes-div" >
-            <NoteCard key={note.id} note={note} onEdit={null} onDelete={() => handleDeleteNote(note.id)} />
-        </div>
-        </>
-      ))}
+      <NoteForm
+        onSubmit={handleFormSubmit}
+        existingNote={editingNote}
+        onCancel={() => setEditingNote(null)}
+      />
+
+      <div className="notes-div">
+        {notes.map((note) => (
+          <NoteCard
+            key={note.id}
+            note={note}
+            onEdit={() => handleEditNote(note.id)}
+            onDelete={() => handleDeleteNote(note.id)}
+          />
+        ))}
+      </div>
     </>
   );
 }

@@ -5,6 +5,13 @@ function NoteForm({ onSubmit, existingNote, onCancel }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  useEffect(() => {
+    if (existingNote) {
+      setTitle(existingNote.title);
+      setContent(existingNote.content);
+    }
+  }, [existingNote]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (title.trim() != "" && content.trim() != "") {
@@ -36,8 +43,21 @@ function NoteForm({ onSubmit, existingNote, onCancel }) {
             placeholder="Content"
             value={content}
           />
-          <button type="submit"> {existingNote ? "Update" : "Add"} </button>
-          {existingNote && <button onClick={onCancel}>Cancel</button>}
+          <div>
+            <button type="submit"> {existingNote ? "Update" : "Add"} </button>
+            {existingNote && (
+              <button
+                type="button"
+                onClick={() => {
+                  setTitle("");
+                  setContent("");
+                  onCancel(); // Bu Notes.js içinde editingNote'u null yapacak
+                }}
+              >
+                Cancel
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </>

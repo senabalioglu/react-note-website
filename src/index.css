@@ -1,11 +1,11 @@
 body{
   font-family: "Space Mono", monospace;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .notes-div{
- 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  max-width: 1000px;
+  justify-content: center;
   
 }

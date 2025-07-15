@@ -1,19 +1,19 @@
 import "./NoteCard.css";
+import { FiTrash } from "react-icons/fi";
 
-function NoteCard({note, onEdit, onDelete}) {
+function NoteCard({ note, onEdit, onDelete }) {
   return (
     <>
-      <div onClick={onDelete} className="card-container">
+      <div className="card-container">
+        <FiTrash style={{ fontSize: 20, margin: 15 }} onClick={onDelete} />
         <div className="inner-container">
           <div>
             <h3>{note.title}</h3>
           </div>
           <div className="note-div">
-            <p>
-              {note.content}
-            </p>
-            <h2> + </h2>
+            <p>{note.content}</p>
           </div>
+          <button className="btn" onClick={onEdit} >Edit</button>
         </div>
       </div>
     </>
