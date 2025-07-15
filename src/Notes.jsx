@@ -38,12 +38,11 @@ function Notes() {
 
   return (
     <>
-      <NoteForm
+    <NoteForm
         onSubmit={handleFormSubmit}
         existingNote={editingNote}
         onCancel={() => setEditingNote(null)}
       />
-
       <div className="notes-div">
         {notes.map((note) => (
           <NoteCard

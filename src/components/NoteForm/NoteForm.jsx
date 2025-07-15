@@ -5,8 +5,10 @@ function NoteForm({ onSubmit, existingNote, onCancel }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  const MAX_TITLE_LENGTH = 100;
+
   useEffect(() => {
-    if (existingNote) {
+    if (existingNote && existingNote.title.length <= MAX_TITLE_LENGTH) {
       setTitle(existingNote.title);
       setContent(existingNote.content);
     }
@@ -14,7 +16,7 @@ function NoteForm({ onSubmit, existingNote, onCancel }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (title.trim() != "" && content.trim() != "") {
+    if (title.trim() != "" && content.trim() != "" && title.length <= MAX_TITLE_LENGTH) {
       const noteData = {
         title,
         content,

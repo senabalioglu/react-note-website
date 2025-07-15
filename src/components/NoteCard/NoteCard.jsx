@@ -11,7 +11,7 @@ function NoteCard({ note, onEdit, onDelete }) {
             <h3>{note.title}</h3>
           </div>
           <div className="note-div">
-            <p>{note.content}</p>
+            <p className="truncate-title" >{note.content}</p>
           </div>
           <button className="btn" onClick={onEdit} >Edit</button>
         </div>

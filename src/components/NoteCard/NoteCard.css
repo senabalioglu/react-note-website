@@ -26,9 +26,15 @@ body {
 }
 
 .note-div{
-  border: 2px dashed #000;
-  background: #f0f0f0;
-  padding: 5px;
+  max-height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border: 2px dashed black;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 .btn {
@@ -56,3 +62,4 @@ body {
     display: flex;
     justify-content: space-evenly;
 }
+
