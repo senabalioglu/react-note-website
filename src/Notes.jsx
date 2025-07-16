@@ -38,11 +38,21 @@ function Notes() {
 
   return (
     <>
-    <NoteForm
-        onSubmit={handleFormSubmit}
-        existingNote={editingNote}
-        onCancel={() => setEditingNote(null)}
-      />
+      <div
+        style={{
+          marginBottom: 10,
+          display: "flex",
+          flex: 1,
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <NoteForm
+          onSubmit={handleFormSubmit}
+          existingNote={editingNote}
+          onCancel={() => setEditingNote(null)}
+        />
+      </div>
       <div className="notes-div">
         {notes.map((note) => (
           <NoteCard
